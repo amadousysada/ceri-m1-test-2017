@@ -10,14 +10,24 @@ import fr.univavignon.rodeo.api.IAnimal;
 
 public class IAnimalTest{
 	
-	IAnimal animal;
+	static IAnimal animal;
+	
+	public  static IAnimal getTestInstance(){
+		animal=mock(IAnimal.class);
+		when(animal.isBoss()).thenReturn(false);
+		when(animal.getName()).thenReturn("Gaby");
+		when(animal.getXP()).thenReturn(20);
+		
+		
+		return animal;	
+	}
 	
 	@Before
 	public void getInstance(){
 		animal= mock(IAnimal.class);
 		when(animal.isBoss()).thenReturn(false);
 		when(animal.getName()).thenReturn("Gaby");
-		when(animal.getXP()).thenReturn(12);
+		when(animal.getXP()).thenReturn(20);
 	}
 	
 	@Test
