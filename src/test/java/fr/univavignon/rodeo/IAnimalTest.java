@@ -39,7 +39,7 @@ public class IAnimalTest{
 	@Test
 	public void getName(){
 		assertEquals("Gaby", animal.getName());
-		assertEquals("AmadouS", animal.getName());
+		assertEquals("Amadou", animal.getName());
 	}
 	
 	@Test
