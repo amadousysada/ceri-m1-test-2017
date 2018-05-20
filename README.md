@@ -8,8 +8,6 @@
 
 ##  [Circle](https://circleci.com/dashboard)
 
-##  [Codecov]
-
 
 ## Resources
 
