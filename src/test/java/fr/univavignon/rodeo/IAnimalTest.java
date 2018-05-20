@@ -33,18 +33,16 @@ public class IAnimalTest{
 	@Test
 	public void isBoss(){
 		assertEquals(false,animal.isBoss());
-		assertEquals(true,animal.isBoss());
 	}
 	
 	@Test
 	public void getName(){
 		assertEquals("Gaby", animal.getName());
-		assertEquals("Amadou", animal.getName());
 	}
 	
 	@Test
 	public void getXP(){
-		assertEquals(12, animal.getXP());
+		assertEquals(20, animal.getXP());
 	}
 
 }
