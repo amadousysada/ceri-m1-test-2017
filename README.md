@@ -2,13 +2,13 @@
 
 ## Auteur
 
-- [Amadou Abdoulaye SY]
+- Amadou Abdoulaye SY
 
 ##	[Codacy](https://app.codacy.com/app/amadousysada/ceri-m1-test-2017/dashboard)
 
 ##  [Circle](https://circleci.com/dashboard)
 
-##	[Codecov]
+##  [Codecov]
 
 
 ## Resources
