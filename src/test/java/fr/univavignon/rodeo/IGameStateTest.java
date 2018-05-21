@@ -1,60 +1,124 @@
 package fr.univavignon.rodeo;
 
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doThrow;
 
-
-import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import fr.univavignon.rodeo.api.IAnimal;
 import fr.univavignon.rodeo.api.IGameState;
 import fr.univavignon.rodeo.api.ISpecie;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
+import fr.univavignon.rodeo.api.SpecieLevel;
 
 public class IGameStateTest {
 
-	static IGameState gameState;
-	static List<ISpecie> maListeSpec;
-	static IAnimal boeuf =IAnimalTest.getTestInstance();
+public static IGameState iGameState;
+public static IAnimal iAnimal=IAnimalTest.getIAnimalMock();
 	
+	/**
+	 * get IGameStateTest Mock
+	 * @return
+	 */
+	public static IGameState getIGameStateMock() {
+		iGameState=mock(IGameState.class);
+		
+		
+		doThrow(new IllegalStateException()).when(iGameState).exploreArea();
+		doThrow(new IllegalArgumentException()).when(iGameState).catchAnimal(null);		
+		
+		doThrow(new IllegalArgumentException()).when(iGameState).getSpecieLevel(null);
+		ISpecie iSpecie=ISpecieTest.getISpecieMock();
+		doThrow(new IllegalStateException()).when(iGameState).catchAnimal(iAnimal);
 
-	@Before
-	public  void getInstance(){
 		
-		ISpecie specie =ISpecifieTest.getTestInstance();
-			
-		
-	gameState=mock(IGameState.class);
-	when(gameState.getProgression()).thenReturn(20);
-	when(gameState.getName()).thenReturn("gameState");
-	doThrow(new IllegalArgumentException()).when(gameState).catchAnimal(boeuf);
-	//when(gameState.catchAnimal(boeuf)).thenThrow(NullPointerException.class);;
-	doThrow(new IllegalArgumentException()).when(gameState).getSpecieLevel(specie);
+		SpecieLevel specieLevel = null ;
+        when(iGameState.getSpecieLevel(iSpecie)).thenReturn(specieLevel);		
+		 // defining the value of getArea
+       when(iGameState.getProgression()).thenReturn(10);
+
+
+		return  iGameState;
 	}
+	
+	
+	/**
+	 * get IGameStateTest Instance
+	 * @return
+	 */
+	public IGameState getIGameStateInstance() {
+		return  getIGameStateMock();
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testExploreAreaException(){ 
+		
+		// init IGameStateTest
+		iGameState=getIGameStateMock();
+		
+		iGameState.exploreArea();
+        
+        
+	}
+
+	
+	/**
+	 *  IllegalArgumentException If the given <tt>animal</tt> is <tt>null</tt>.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testCatchAnimalNull(){ 
+		
+		iGameState=getIGameStateInstance();
+		iGameState.catchAnimal(null);    
+        
+	}
+	
+	/**
+	 * IllegalStateException If the given <tt>animal</tt> can not be found in current areas.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void testCatchAnimalNotFound(){ 
+		iGameState=getIGameStateInstance();
+		iGameState.catchAnimal(iAnimal);    
+	}	
+
+	
+	/**
+	 * IllegalArgumentException If the given <tt>specie</tt> is <tt>null</tt>
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetSpecieLevelException(){ 
+		
+		iGameState=getIGameStateInstance();
+		iGameState.getSpecieLevel(null);    
+        
+	}	
+	
+	/**
+	 *  Current specie level.
+	 */
 	@Test
-	public void testBla(){
+	public void testGetSpecieLevel(){ 
 		
-		assertEquals(20,gameState.getProgression());
-	
-	
-
+		iGameState=getIGameStateInstance();
+		SpecieLevel specieLevel = null ;
+		ISpecie iSpecie=ISpecieTest.getISpecieMock();
+        assertEquals(iGameState.getSpecieLevel(iSpecie), specieLevel);
+        
 	}
-	public static IGameState getTestInstance() {
-		
-		ISpecie specie =ISpecifieTest.getTestInstance();
-			
-		
-	gameState=mock(IGameState.class);
-	when(gameState.getProgression()).thenReturn(20);
-	when(gameState.getName()).thenReturn("gameState");
-	doThrow(new IllegalArgumentException()).when(gameState).catchAnimal(boeuf);
-	//when(gameState.catchAnimal(boeuf)).thenThrow(NullPointerException.class);;
-	doThrow(new IllegalArgumentException()).when(gameState).getSpecieLevel(specie);
+	
+	/**
+	 * testing get progression
+	 */
+	@Test
+	public void testGetProgression() {
+		//Create mock
+		iGameState=getIGameStateInstance();
 
-		return gameState;
+        //testing getArea()
+        assertEquals(iGameState.getProgression(), 10);
+
 	}
 }
+

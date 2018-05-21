@@ -1,48 +1,90 @@
 package fr.univavignon.rodeo;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import org.junit.Test;
 import fr.univavignon.rodeo.api.IAnimal;
 
-public class IAnimalTest{
+public class IAnimalTest {
+
+	public IAnimal iAnimal;
 	
-	static IAnimal animal;
-	
-	public  static IAnimal getTestInstance(){
-		animal=mock(IAnimal.class);
-		when(animal.isBoss()).thenReturn(false);
-		when(animal.getName()).thenReturn("Gaby");
-		when(animal.getXP()).thenReturn(20);
+	/**
+	 * get IAnimal Mock
+	 * @return
+	 */
+	public static IAnimal getIAnimalMock() {
+		IAnimal iAnimal = mock(IAnimal.class);				
+		// defining the value of XP
+		when(iAnimal.getXP()).thenReturn(1);
+		// init iAnimal
+		// defining the value of isBoss
+        when(iAnimal.isBoss()).thenReturn(true);	
 		
+		// defining the value of isEndagered
+        when(iAnimal.isEndangered()).thenReturn(true);	
+
+		// defining the value of isSecret
+        when(iAnimal.isSecret()).thenReturn(false);
+        
+		// defining the value of name
+        when(iAnimal.getName()).thenReturn("test");
+        
+		return  iAnimal;
+	}	
+	
+	/**
+	 * get IAnimal Instance
+	 * @return
+	 */
+	public  IAnimal getIAnimalInstance() {
+		return  getIAnimalMock();
+	}
+	
+	/**
+	 * Testing Get XP
+	 */
+	@Test
+	public void testGetXP() {
+		// init iAnimal
+		iAnimal=getIAnimalInstance();
+        //test the getXP
+        assertEquals(iAnimal.getXP(), 1);
+	}
+
+	/**
+	 * Thesting Is Boss
+	 */
+	@Test
+	public void testIsBoss() {
+		// init iAnimal
+		iAnimal=getIAnimalInstance();
 		
-		return animal;	
-	}
-	
-	@Before
-	public void getInstance(){
-		animal= mock(IAnimal.class);
-		when(animal.isBoss()).thenReturn(false);
-		when(animal.getName()).thenReturn("Gaby");
-		when(animal.getXP()).thenReturn(20);
-	}
-	
+        
+        //test the isBoss
+        assertTrue(iAnimal.isBoss());	
+        }
+
+	/**
+	 * Testing Is Endangered
+	 */
 	@Test
-	public void isBoss(){
-		assertEquals(false,animal.isBoss());
-	}
-	
+	public void testIsEndangered() {
+		// init iAnimal
+		iAnimal=getIAnimalInstance();
+        
+        //test the isBoss
+        assertTrue(iAnimal.isEndangered());		
+        }
+
 	@Test
-	public void getName(){
-		assertEquals("Gaby", animal.getName());
-	}
-	
-	@Test
-	public void getXP(){
-		assertEquals(20, animal.getXP());
-	}
+	public void testIsSecret() {
+		// init iAnimal
+		iAnimal=getIAnimalInstance();
+        
+        //test the isSecret
+        assertFalse(iAnimal.isSecret());		
+        }
 
 }

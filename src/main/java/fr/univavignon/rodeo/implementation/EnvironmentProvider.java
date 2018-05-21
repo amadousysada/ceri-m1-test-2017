@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import fr.univavignon.rodeo.api.IEnvironment;
 import fr.univavignon.rodeo.api.IEnvironmentProvider;
 
 /**
@@ -14,11 +15,11 @@ import fr.univavignon.rodeo.api.IEnvironmentProvider;
  */
 public class EnvironmentProvider implements IEnvironmentProvider{
 	
-	private List<Environment> availableEnvironements;
+	private List<IEnvironment> availableEnvironements;
 	
 	
 	
-	public EnvironmentProvider(List<Environment> environements) {
+	public EnvironmentProvider(List<IEnvironment> environements) {
 		super();
 		this.availableEnvironements=(environements);
 	}
@@ -32,7 +33,7 @@ public class EnvironmentProvider implements IEnvironmentProvider{
 
 	public List<String> getAvailableEnvironments() {
 		List<String> liste=new ArrayList<String>();
-		for (Environment environment : availableEnvironements) {
+		for (IEnvironment environment : availableEnvironements) {
 			liste.add(environment.getName());
 			
 		}
@@ -47,10 +48,10 @@ public class EnvironmentProvider implements IEnvironmentProvider{
 	 * @return Required environment if available, <tt>null</tt> otherwise.
 	 * @throws IllegalArgumentException If the given <tt>name</tt> is null.
 	 */
-	public Environment getEnvironment(String name) throws IllegalArgumentException{
-		Iterator<Environment> it=availableEnvironements.iterator();
+	public IEnvironment getEnvironment(String name) throws IllegalArgumentException{
+		Iterator<IEnvironment> it=availableEnvironements.iterator();
 		boolean found=false;
-		Environment env =null;
+		IEnvironment env =null;
 		while(it.hasNext() && !found){
 			if((it.next().getName()).equals(name)){
 				found=true;
