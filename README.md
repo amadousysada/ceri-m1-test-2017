@@ -2,11 +2,10 @@
 
 ## Auteur
 
-- Amadou Abdoulaye SY
+ SY Amadou Abdoulaye
 
-##	[Codacy](https://app.codacy.com/app/amadousysada/ceri-m1-test-2017/dashboard)
-
-##  [Circle](https://circleci.com/dashboard)
+## Badges
+[![CircleCI](https://circleci.com/gh/amadousysada/ceri-m1-test-2017.svg?style=svg)](https://circleci.com/gh/amadousysada/ceri-m1-test-2017)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ed6645a02f84b0eb2000c75c4fe2480)](https://www.codacy.com/app/amadousysada/ceri-m1-test-2017?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=amadousysada/ceri-m1-test-2017&amp;utm_campaign=Badge_Grade) [![codecov](https://codecov.io/gh/amadousysada/ceri-m1-test-2017/branch/master/graph/badge.svg)](https://codecov.io/gh/amadousysada/ceri-m1-test-2017)
 
 
 ## Resources
